@@ -7,3 +7,8 @@ services:
       dockerfile: ./docker/prod/Dockerfile
     ports:
       - '4000:3000'
+    networks:
+      - local_network
+
+networks:
+  local_network:
