@@ -27,6 +27,12 @@ jobs:
           mkdir -p /home/runner/.ssh
           touch /home/runner/.ssh/known_hosts
 
+      - name: Add server key to known_hosts
+        run: |
+          ssh-keyscan -t ed25519 *** >> /home/runner/.ssh/known_hosts
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+
       - name: Connect to Server
         run: sshpass -p ${{ secrets.SERVER_PASS }} ssh -v ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "cd pixiepot.tech/ && git pull"
         env:
