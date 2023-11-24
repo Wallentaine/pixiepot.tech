@@ -12,3 +12,4 @@ services:
 
 networks:
   local_network:
+    driver: bridge
