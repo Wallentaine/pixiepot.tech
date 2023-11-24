@@ -23,7 +23,7 @@ jobs:
         shell: bash
 
       - name: Connect to Server
-        run: ssh ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "cd pixiepot.tech && git pull origin main"
+        run: sshpass -p ${{ secrets.SERVER_PASS }} ssh ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "cd pixiepot.tech && git pull origin main"
 
       - name: Restart Docker Compose
         run: sshpass -p ${{ secrets.SERVER_PASS }} ssh ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "cd pixiepot.tech && docker compose -f docker-compose.prod.yml down && docker compose -f docker-compose.prod.yml build && docker compose -f docker-compose.prod.yml up -d"
