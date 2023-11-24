@@ -16,6 +16,10 @@ jobs:
       - name: Install sshpass
         run: sudo apt-get install -y sshpass
 
+      - name: Debug SSH Key
+        run: |
+          echo ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
