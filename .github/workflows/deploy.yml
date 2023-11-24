@@ -20,8 +20,6 @@ jobs:
         run: |
           eval $(ssh-agent -s)
           ssh-add <(echo "${{ secrets.SSH_PRIVATE_KEY }}")
-        env:
-          SSH_PASSPHRASE: ${{ secrets.SSH_PASS_PHRASE }}
         shell: bash
 
       - name: Connect to Server
