@@ -19,10 +19,10 @@ jobs:
       - name: Setup SSH
         run: |
           eval $(ssh-agent -s)
-          echo "Setting SSH_PASSPHRASE: $SSH_PASSPHRASE"
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" | ssh-add -
-        env:
-          SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
+          "spawn ssh-add - <<< '${{ secrets.SSH_PASSPHRASE }}'
+          expect \"Enter passphrase for -:\"
+          send \"\r\"
+          expect eof" | expect -
         shell: bash
 
       - name: Connect to Server
