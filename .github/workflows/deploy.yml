@@ -18,6 +18,7 @@ jobs:
 
       - name: Setup SSH
         run: |
+          eval $(ssh-agent -s)
           echo "${{ secrets.SSH_PRIVATE_KEY }}" | ssh-add -
         shell: bash
 
