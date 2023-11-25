@@ -1,19 +1,19 @@
-version: '3'
+version: "3"
 
 services:
   web:
     build:
       context: .
       dockerfile: ./docker/prod/Dockerfile
-    ports:
-      - '4000:3000'
-    enviroment: 
+    environment:
       - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_bmljZS1zb2xlLTQ0LmNsZXJrLmFjY291bnRzLmRldiQ
       - CLERK_SECRET_KEY=sk_test_c6wcXC9bulY4qvwEt6lawqWizDEvuEKznhASPgu4lA
       - NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
       - NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
       - NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
       - NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
+    ports:
+      - "4000:3000"
     networks:
       - local_network
 
