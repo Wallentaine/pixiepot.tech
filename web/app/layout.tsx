@@ -6,6 +6,7 @@ import { dark, neobrutalism } from "@clerk/themes";
 import { ruRU } from "@clerk/localizations";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { cn } from "@/lib/utils";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -28,7 +29,7 @@ export default function RootLayout({
       localization={ruRU}
     >
       <html lang="en">
-        <body className={font.className}>
+        <body className={cn("dark:bg-[#2b2b2b] bg-white", font.className)}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"

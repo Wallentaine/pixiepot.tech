@@ -3,11 +3,12 @@
 import { ModeToggle } from "@/components/toogle-theme";
 import { cn } from "@/lib/utils";
 import { UserButton } from "@clerk/nextjs";
-import { Asterisk, Home, LineChart } from "lucide-react";
+import { Asterisk, Home, LineChart, SlidersHorizontal } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
+import { useTheme } from "next-themes";
 
 const routes = [
   {
@@ -21,25 +22,34 @@ const routes = [
     icon: LineChart,
   },
   {
-    title: "/hitmap",
-    href: "/hitmap",
-    icon: Asterisk,
+    title: "/dashboard",
+    href: "/dashboard",
+    icon: SlidersHorizontal,
   },
 ];
 
 const Sidebar = () => {
   const pathname = usePathname();
+  const { theme } = useTheme();
   return (
-    <div className="absolute flex flex-col justify-between items-center h-screen w-32 py-8">
+    <div className="absolute md:flex flex md:flex-col justify-between items-center h-screen w-32 py-8  dark:bg-[#2b2b2b] bg-white">
       <div className="flex flex-col justify-center items-center space-y-16">
-        <Image src={"/logo.svg"} alt="logo" width={100} height={100} />
+        {theme === "light" ? (
+          <Image src={"/logo-dark.svg"} alt="logo" width={100} height={100} />
+        ) : (
+          <Image src={"/logo.svg"} alt="logo" width={100} height={100} />
+        )}
+
         {routes.map((route, index) => (
           <Link
             prefetch={true}
             href={route.href}
             key={index}
             className={
-              (cn(), pathname === route.href ? "text-orange-500" : "text-white")
+              (cn(),
+              pathname === route.href
+                ? "text-orange-500"
+                : "text-black dark:text-white")
             }
           >
             <route.icon width={40} height={40} />
@@ -48,7 +58,7 @@ const Sidebar = () => {
       </div>
       <div className="space-y-8 flex flex-col">
         <ModeToggle />
-        <Button size="md" className="bg-transparent hover:bg-black">
+        <Button size="md" className="bg-transparent hover:bg-transparent">
           <UserButton afterSignOutUrl="/" />
         </Button>
       </div>

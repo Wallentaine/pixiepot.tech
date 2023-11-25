@@ -1,5 +1,9 @@
-import Sidebar from "@/components/sidebar";
+import Employees from "./employees";
 
 export default function Home() {
-  return <div className="relative h-screen overflow-hidden"></div>;
+  return (
+    <div className="relative h-screen overflow-hidden">
+      <Employees />
+    </div>
+  );
 }
