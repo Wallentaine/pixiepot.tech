@@ -1,6 +1,5 @@
-import { GradientChart } from "@/components/gradientChart";
+"use client";
 import Slider from "@/components/slider";
-import React from "react";
 
 const Diagram = () => {
   return (

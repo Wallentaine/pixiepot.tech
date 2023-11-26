@@ -1,8 +1,11 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 type Inputs = {
   date: string;
@@ -25,22 +28,29 @@ type Inputs = {
 };
 
 const Dashboard = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
+    reset,
     watch,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = (data) => reset();
 
   console.log(watch());
 
   return (
-    <div className="max-w-7xl mx-auto h-full">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1, delay: 0.5, ease: [0, 0.71, 0.2, 1.01] }}
+      className="max-w-7xl mx-auto h-full"
+    >
       <div className="space-y-2 dark:text-black text-white mb-2 ">
-        <h1 className="text-xl font-bold">Settings</h1>
+        <h1 className="text-xl font-bold">Панель управления</h1>
         <p className="text-md dark:text-secondary text-secondary/50 font-semibold">
-          Information
+          Корректирование максимально возможного значения критериев выгорания
         </p>
       </div>
       <div>
@@ -54,73 +64,131 @@ const Dashboard = () => {
           <Input
             type="date"
             {...register("date")}
-            className="col-span-1 bg-white dark:bg-black text-black dark:text-white"
+            className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black  focus:border-white p-4 py-6 border-2"
           />
 
           <Input
             {...register("countMessage", { required: true })}
-            placeholder="countMessage"
-            className="col-span-1 bg-white dark:bg-[#2b2b2b] text-black dark:text-white dark:placeholder:text-white placeholder:text-black focus:border-white"
+            type="number"
+            placeholder="Количество сообщений"
+            className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50 focus:border-white p-4 py-6 border-2"
           />
 
           <Input
             {...register("countCharInMessage", { required: true })}
-            placeholder="countMessage"
-            className="w-1/4 bg-white dark:bg-black text-black dark:text-white"
+            type="number"
+            placeholder="Средняя длина сообщений"
+            className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50 focus:border-white p-4 py-6 border-2"
           />
 
           <Input
             {...register("countCommits", { required: true })}
-            placeholder="countMessage"
-            className="w-1/3 bg-white dark:bg-black text-black dark:text-white"
+            type="number"
+            placeholder="Количество коммитов"
+            className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50 focus:border-white p-4 py-6 border-2"
           />
 
           <Input
             {...register("countChangedCode", { required: true })}
-            placeholder="countMessage"
-            className="w-1/3 bg-white dark:bg-black text-black dark:text-white"
+            type="number"
+            placeholder="Количество строк измененного кода"
+            className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50 focus:border-white p-4 py-6 border-2"
           />
 
           <Input
             {...register("countHoursInApps", { required: true })}
-            placeholder="countMessage"
-            className="w-1/3 bg-white dark:bg-black text-black dark:text-white"
+            type="number"
+            placeholder="Время активности в приложениях (минуты)"
+            className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50 focus:border-white p-4 py-6 border-2"
           />
 
           <Input
             {...register("countTasks", { required: true })}
-            placeholder="countMessage"
-            className="w-1/3 bg-white dark:bg-black text-black dark:text-white"
+            type="number"
+            placeholder="Количество задач"
+            className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50 focus:border-white p-4 py-6 border-2"
           />
 
           <Input
             {...register("countDaysOnTask", { required: true })}
-            placeholder="countMessage"
-            className="w-1/4 bg-white dark:bg-black text-black dark:text-white"
+            type="number"
+            placeholder="Самый большой срок на задаче (минуты)"
+            className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50 focus:border-white p-4 py-6 border-2"
           />
 
-          <Input {...register("lastUpGradeDate", { required: true })} />
+          <Input
+            {...register("lastUpGradeDate", { required: true })}
+            type="date"
+            placeholder="Дата последнего повышения "
+            className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50 focus:border-white p-4 py-6 border-2"
+          />
 
-          <Input {...register("countWorkYearInCompany", { required: true })} />
+          <Input
+            {...register("countWorkYearInCompany", { required: true })}
+            type="number"
+            placeholder="Стаж работы в компании (дни)"
+            className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50 focus:border-white p-4 py-6 border-2"
+          />
 
-          <Input {...register("countCall", { required: true })} />
+          <Input
+            {...register("countCall", { required: true })}
+            type="number"
+            placeholder="Количество звонков"
+            className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50 focus:border-white p-4 py-6 border-2"
+          />
 
-          <Input {...register("callDuration", { required: true })} />
+          <Input
+            {...register("callDuration", { required: true })}
+            type="number"
+            placeholder="Средняя продолжительность звонков (минуты)"
+            className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50 focus:border-white p-4 py-6 border-2"
+          />
 
-          <Input {...register("countWorkHours", { required: true })} />
+          <Input
+            {...register("countWorkHours", { required: true })}
+            type="number"
+            placeholder="Количество рабочих часов"
+            className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50 focus:border-white p-4 py-6 border-2"
+          />
 
-          <Input {...register("countWorkHoursOver", { required: true })} />
+          <Input
+            {...register("countWorkHoursOver", { required: true })}
+            type="number"
+            placeholder="Количество часов переработки"
+            className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50 focus:border-white p-4 py-6 border-2"
+          />
 
-          <Input {...register("countDaysSickTime", { required: true })} />
+          <Input
+            {...register("countDaysSickTime", { required: true })}
+            type="number"
+            placeholder="Количество отгулов и больничных"
+            className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50 focus:border-white p-4 py-6 border-2"
+          />
 
-          <Input {...register("countMissDeadline", { required: true })} />
+          <Input
+            {...register("countMissDeadline", { required: true })}
+            type="number"
+            placeholder="Количество сдвинутых сроков"
+            className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50 focus:border-white p-4 py-6 border-2"
+          />
 
-          <Input {...register("countOutstandingTask", { required: true })} />
+          <Input
+            {...register("countOutstandingTask", { required: true })}
+            type="number"
+            placeholder="Невыполненые задачи"
+            className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50  focus:border-white p-4 py-6 border-2"
+          />
 
-          <input type="submit" />
+          <Button
+            type="submit"
+            onClick={() => router.refresh()}
+            className="col-span-2 w-2/5 m-auto bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50 hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white focus:border-white p-4 py-6 border-2"
+          >
+            Отправить
+          </Button>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

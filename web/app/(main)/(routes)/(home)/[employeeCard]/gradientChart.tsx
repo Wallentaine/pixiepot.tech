@@ -42,6 +42,10 @@ export const data = {
       label: "Dataset 1",
       data: labels.map(() => getRandomNumber(-1000, 1000)),
     },
+    {
+      label: "Dataset 2",
+      data: labels.map(() => getRandomNumber(-1000, 1000)),
+    },
   ],
 };
 
@@ -132,7 +136,8 @@ export function GradientChart() {
       type="line"
       data={chartData}
       options={options}
-      className="py-10"
+      height={92}
+      className="py-6"
     />
   );
 }

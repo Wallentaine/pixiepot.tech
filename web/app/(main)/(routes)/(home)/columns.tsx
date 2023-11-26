@@ -80,7 +80,7 @@ export const columns: ColumnDef<Payment>[] = [
 
       return (
         <div className="flex gap-2 justify-start items-center">
-          <Link href={`crud/categories/${payment.id}`}>
+          <Link href={`/${payment.id}`}>
             <Button
               variant="classic"
               size="sm"

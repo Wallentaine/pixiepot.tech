@@ -3,12 +3,13 @@
 import { ModeToggle } from "@/components/toogle-theme";
 import { cn } from "@/lib/utils";
 import { UserButton } from "@clerk/nextjs";
-import { Asterisk, Home, LineChart, SlidersHorizontal } from "lucide-react";
+import { Home, LineChart, SlidersHorizontal } from "lucide-react";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
-import { useTheme } from "next-themes";
+import { motion } from "framer-motion";
 
 const routes = [
   {
@@ -32,7 +33,12 @@ const Sidebar = () => {
   const pathname = usePathname();
   const { theme } = useTheme();
   return (
-    <div className="absolute md:flex flex md:flex-col justify-between items-center h-screen w-32 py-8  dark:bg-[#2b2b2b] bg-white">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1.5, delay: 0.5, ease: [0, 0.71, 0.2, 1.01] }}
+      className="absolute md:flex flex md:flex-col justify-between items-center h-screen w-32 py-8  dark:bg-[#2b2b2b] bg-white"
+    >
       <div className="flex flex-col justify-center items-center space-y-16">
         {theme === "light" ? (
           <Image src={"/logo-dark.svg"} alt="logo" width={100} height={100} />
@@ -62,7 +68,7 @@ const Sidebar = () => {
           <UserButton afterSignOutUrl="/" />
         </Button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
