@@ -86,7 +86,7 @@ export function GradientChart() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://172.26.0.1:4001/api/statistic/employees-project"
+          "http://127.0.0.1:4001/api/statistic/employees-project"
         );
         setEmployees(response.data);
         console.log(employees);
