@@ -66,7 +66,7 @@ export const columns: ColumnDef<Payment>[] = [
       <div className="capitalize flex justify-center items-center">
         <Progress
           value={row.getValue("burnout_rate")}
-          className="bg-white mr-4 max-w-[90%]"
+          className="bg-black dark:bg-white mr-4 max-w-[90%]"
         />
         {row.getValue("burnout_rate") + "%"}
       </div>
@@ -80,13 +80,13 @@ export const columns: ColumnDef<Payment>[] = [
 
       return (
         <div className="flex gap-2 justify-start items-center">
-          <Link href={`crud/categories/${payment.id}`}>
+          <Link href={`/${payment.id}`}>
             <Button
               variant="classic"
               size="sm"
               className="flex text-center rounded-3xl"
             >
-              <p className="text-xs">Подробнее</p>
+              <p className="text-xs text-white font-bold">Подробнее</p>
             </Button>
           </Link>
 

@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { Payment, columns } from "./columns";
 import { DataTableDemo } from "./data-table";
 
-const Categories = () => {
-  const [categories, setCategories] = useState<Payment[]>([]);
+const Employees = () => {
+  const [employees, setEmployees] = useState<Payment[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -137,12 +137,12 @@ const Categories = () => {
           burnout_rate: 80,
         },
       ];
-      setCategories(response);
+      setEmployees(response);
     };
 
     fetchData();
-  }, [setCategories]);
-  return <DataTableDemo columns={columns} data={categories} />;
+  }, [setEmployees]);
+  return <DataTableDemo columns={columns} data={employees} />;
 };
 
-export default Categories;
+export default Employees;

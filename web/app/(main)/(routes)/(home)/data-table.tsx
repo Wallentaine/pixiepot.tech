@@ -79,22 +79,22 @@ export function DataTableDemo<TData, TValue>({
           onChange={(event) =>
             table.getColumn("fullname")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm bg-primary text-lg border-black/10 text-slate-700 focus:border-secondary/20 transition focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
+          className="max-w-sm bg-primary text-lg border-gray-800 dark:border-black/10 text-white dark:text-slate-700 focus:border-secondary/20 transition focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0 placeholder:text-white dark:placeholder:text-slate-700"
         />
 
-        <div className="flex gap-4 bg-primary">
+        <div className="flex gap-4 bg-primary rounded-lg">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="outline"
-                className="ml-auto bg-primary border-black/10 hover:bg-primary text-slate-700 hover:text-black text-sm focus:border-secondary/20 transition focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
+                className="ml-auto bg-primary border-[#2D343E] dark:border-black/10 hover:bg-primary text-white dark:text-slate-700 hover:text-white text-sm focus:border-secondary/20 transition focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
               >
                 Columns <ChevronDown className="ml-2 h-4 w-4 bg-primary " />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
-              className="border-black/10 bg-primary hover:bg-primary text-slate-700 focus:border-secondary/20 transition focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0 p-2"
+              className="border-black/10 bg-primary hover:bg-primary text-white dark:text-slate-700 focus:border-secondary/20 transition focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0 p-2"
             >
               {table
                 .getAllColumns()
@@ -126,7 +126,7 @@ export function DataTableDemo<TData, TValue>({
                   return (
                     <TableHead
                       key={header.id}
-                      className="text-start text-secondary/50 text-[15px]"
+                      className="text-start dark:text-secondary/50 text-secondary/60 text-[15px]"
                     >
                       {header.isPlaceholder
                         ? null
@@ -151,7 +151,7 @@ export function DataTableDemo<TData, TValue>({
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className="text-start text-slate-700 text-[15px] w-[30%]"
+                      className="text-start text-white dark:text-slate-700 text-[15px] w-[30%]"
                     >
                       {flexRender(
                         cell.column.columnDef.cell,
@@ -162,10 +162,10 @@ export function DataTableDemo<TData, TValue>({
                 </TableRow>
               ))
             ) : (
-              <TableRow>
+              <TableRow className="hover:bg-transparent">
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24 text-center"
+                  className="h-24 text-center text-white dark:text-black"
                 >
                   No results.
                 </TableCell>
@@ -175,7 +175,7 @@ export function DataTableDemo<TData, TValue>({
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
+        <div className="flex-1 text-sm text-secondary/60 dark:text-muted-foreground">
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
           {table.getFilteredRowModel().rows.length} row(s) selected.
         </div>
@@ -193,7 +193,7 @@ export function DataTableDemo<TData, TValue>({
             size="sm"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
-            className="bg-black text-white"
+            className="bg-black hover:bg-black/70 text-white"
           >
             Next
           </Button>
