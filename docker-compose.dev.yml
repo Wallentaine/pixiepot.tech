@@ -12,7 +12,14 @@ services:
       - NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
       - NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
       - NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
+      - URL=http://localhost:4001
     ports:
       - "4000:3000"
     volumes:
       - ./web:/web
+    networks:
+      - local_network
+
+networks:
+  local_network:
+    driver: bridge

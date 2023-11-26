@@ -1,9 +1,36 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { GradientChart } from "./gradientChart";
 import { motion } from "framer-motion";
+import axios from "axios";
+
+type Payment = {
+  id_epmloyee: number;
+  burnout: number;
+  date: string;
+  project: string;
+  employee: {};
+};
 
 const Page = ({ params }: { params: { employeeCard: number } }) => {
+  const [employees, setEmployees] = useState<Payment[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:4001/api/statistic/employees-project"
+        );
+        setEmployees(response.data);
+        console.log(employees);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const employee = {
     fullname: "Балашев Артур Вадимович",
     position: "Руководитель",

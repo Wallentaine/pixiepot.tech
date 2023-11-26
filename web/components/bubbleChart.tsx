@@ -27,7 +27,7 @@ function getRandomNumber(min: number, max: number) {
 export const data = {
   datasets: [
     {
-      label: "Red dataset",
+      label: "Серис для проведения собеседоаний",
       data: Array.from({ length: 50 }, () => ({
         x: getRandomNumber(-100, 100),
         y: getRandomNumber(-100, 100),
@@ -36,13 +36,31 @@ export const data = {
       backgroundColor: "rgba(255, 99, 132, 0.5)",
     },
     {
-      label: "Blue dataset",
+      label: "Банковское веб-приложение",
       data: Array.from({ length: 50 }, () => ({
         x: getRandomNumber(-100, 100),
         y: getRandomNumber(-100, 100),
         r: getRandomNumber(5, 20),
       })),
       backgroundColor: "rgba(53, 162, 235, 0.5)",
+    },
+    {
+      label: "Нейронная сеть для генерации фейковых данных",
+      data: Array.from({ length: 50 }, () => ({
+        x: getRandomNumber(-100, 100),
+        y: getRandomNumber(-100, 100),
+        r: getRandomNumber(5, 20),
+      })),
+      backgroundColor: "rgba(11, 156, 146, 0.5)",
+    },
+    {
+      label: "Мобильное приложение 'Ясно'",
+      data: Array.from({ length: 50 }, () => ({
+        x: getRandomNumber(-100, 100),
+        y: getRandomNumber(-100, 100),
+        r: getRandomNumber(5, 20),
+      })),
+      backgroundColor: "rgba(100, 11, 90, 0.5)",
     },
   ],
 };

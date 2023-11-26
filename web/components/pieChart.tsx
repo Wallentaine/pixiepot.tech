@@ -6,11 +6,11 @@ import { useTheme } from "next-themes";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const data = {
-  labels: ["Red", "Blue"],
+  labels: ["Выгоревшие", "Невыгоревшие"],
   datasets: [
     {
-      label: "# of Votes",
-      data: [12, 19],
+      label: "%",
+      data: [22, 78],
       backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
       borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
       borderWidth: 1,

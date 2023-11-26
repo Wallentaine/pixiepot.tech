@@ -2,13 +2,13 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 type Inputs = {
-  date: string;
   countMessage: number;
   countCharInMessage: number;
   countCommits: number;
@@ -25,6 +25,7 @@ type Inputs = {
   countDaysSickTime: number;
   countMissDeadline: number;
   countOutstandingTask: number;
+  telegramToken: string;
 };
 
 const Dashboard = () => {
@@ -36,9 +37,12 @@ const Dashboard = () => {
     watch,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => reset();
-
-  console.log(watch());
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    const response = axios.post(
+      "http://localhost:4001/api/statistic/weight-data",
+      data
+    );
+  };
 
   return (
     <motion.div
@@ -62,9 +66,10 @@ const Dashboard = () => {
           className="grid grid-cols-2 w-full justify-start items-center gap-4 text-white placeholder:text-white py-8"
         >
           <Input
-            type="date"
-            {...register("date")}
-            className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black  focus:border-white p-4 py-6 border-2"
+            {...register("telegramToken", { required: true })}
+            type="number"
+            placeholder="Количество сообщений"
+            className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50 focus:border-white p-4 py-6 border-2"
           />
 
           <Input
@@ -179,13 +184,10 @@ const Dashboard = () => {
             className="col-span-1 bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50  focus:border-white p-4 py-6 border-2"
           />
 
-          <Button
+          <input
             type="submit"
-            onClick={() => router.refresh()}
-            className="col-span-2 w-2/5 m-auto bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50 hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white focus:border-white p-4 py-6 border-2"
-          >
-            Отправить
-          </Button>
+            className="col-span-2 w-1/5 rounded-3xl m-auto bg-transparent dark:bg-transparent text-white dark:text-black dark:placeholder:text-black placeholder:text-white/50 hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white darK:focus:border-black focus:border-white px-3 py-2 border-2"
+          />
         </form>
       </div>
     </motion.div>

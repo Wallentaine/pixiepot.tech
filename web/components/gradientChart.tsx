@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import type { ChartArea, ChartData } from "chart.js";
 import {
   CategoryScale,
@@ -23,6 +24,13 @@ ChartJS.register(
   Legend
 );
 
+type Payment = {
+  id_epmloyee: number;
+  burnout: number;
+  date: string;
+  project: string;
+};
+
 const labels = ["January", "February", "March", "April", "May", "June", "July"];
 const colors = [
   "red",
@@ -39,7 +47,7 @@ export const data = {
   labels,
   datasets: [
     {
-      label: "Dataset 1",
+      label: "Уровень выгорания сотрудников",
       data: labels.map(() => getRandomNumber(-1000, 1000)),
     },
   ],
@@ -72,6 +80,24 @@ function createGradient(ctx: CanvasRenderingContext2D, area: ChartArea) {
 }
 
 export function GradientChart() {
+  const [employees, setEmployees] = useState<Payment[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:4001/api/statistic/employees-project"
+        );
+        setEmployees(response.data);
+        console.log(employees);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const { theme } = useTheme();
   let color;
   {

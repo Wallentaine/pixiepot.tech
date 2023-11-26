@@ -73,11 +73,9 @@ export function DataTableDemo<TData, TValue>({
       <div className="flex items-center justify-center gap-3 py-4">
         <Input
           placeholder={"Search"}
-          value={
-            (table.getColumn("fullname")?.getFilterValue() as string) ?? ""
-          }
+          value={(table.getColumn("project")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("fullname")?.setFilterValue(event.target.value)
+            table.getColumn("project")?.setFilterValue(event.target.value)
           }
           className="max-w-sm bg-primary text-lg border-gray-800 dark:border-black/10 text-white dark:text-slate-700 focus:border-secondary/20 transition focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0 placeholder:text-white dark:placeholder:text-slate-700"
         />
@@ -151,7 +149,7 @@ export function DataTableDemo<TData, TValue>({
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className="text-start text-white dark:text-slate-700 text-[15px] w-[30%]"
+                      className="text-start text-white dark:text-slate-700 text-[15px] w-[30%] pl-8"
                     >
                       {flexRender(
                         cell.column.columnDef.cell,
