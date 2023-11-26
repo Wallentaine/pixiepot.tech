@@ -7,8 +7,8 @@ import { DataTableDemo } from "./data-table";
 import axios from "axios";
 
 const Employees = () => {
-  const [employees, setEmployees] = useState<Payment[]>([]);
-  setEmployees([
+  // const [employees, setEmployees] = useState<Payment[]>([]);
+  const employees = [
     {
       id_epmloyee: 1,
       burnout: 20,
@@ -119,8 +119,7 @@ const Employees = () => {
       date: "2022-01-20",
       project: "Embedded Systems",
     },
-  ]);
-  console.log(employees);
+  ];
 
   // useEffect(() => {
   //   const fetchData = async () => {
