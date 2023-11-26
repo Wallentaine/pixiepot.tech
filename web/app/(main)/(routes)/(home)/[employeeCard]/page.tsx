@@ -19,7 +19,7 @@ const Page = ({ params }: { params: { employeeCard: number } }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://host.docker.internal:4001/api/statistic/employees-project"
+          "http://localhost:4001/api/statistic/employees-project"
         );
         setEmployees(response.data);
         console.log(employees);
