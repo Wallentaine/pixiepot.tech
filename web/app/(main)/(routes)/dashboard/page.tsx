@@ -39,7 +39,7 @@ const Dashboard = () => {
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const response = axios.post(
-      "http://127.0.0.1:4001/api/statistic/weight-data",
+      "http://host.docker.internal:4001/api/statistic/weight-data",
       data
     );
   };
